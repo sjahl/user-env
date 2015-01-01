@@ -4,6 +4,7 @@
   tasks:
     - name: ensure git is installed
       apt: pkg=git state=present
+      sudo: yes
 
     - name: create checkout directory
       file: dest=/home/stj/ansible-checkouts owner=stj group=stj state=directory
