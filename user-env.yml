@@ -7,7 +7,7 @@
       sudo: yes
 
     - name: create checkout directory
-      file: dest=/home/stj/ansible-checkouts owner=stj group=staff state=directory
+      file: dest=/home/stj/ansible-checkouts owner=stj group=stj state=directory
 
     - name: check out dotfiles
       git: repo=https://github.com/sjahl/dotfiles.git dest=/home/stj/ansible-checkouts/dotfiles version=HEAD
