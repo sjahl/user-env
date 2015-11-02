@@ -10,10 +10,10 @@
       file: dest=/Users/stj/ansible-checkouts owner=stj group=staff state=directory
 
     - name: check out dotfiles
-      git: repo=https://github.com/sjahl/dotfiles.git dest=/Users/stj/ansible-checkouts/dotfiles version=HEAD
+      git: repo=https://github.com/sjahl/dotfiles.git dest=/home/stj/ansible-checkouts/dotfiles version=HEAD
 
     - name: create symlinks
-      file: src=/Users/stj/ansible-checkouts/dotfiles/{{ item.path }} dest=/Users/stj/{{ item.dest }} state=link
+      file: src=/home/stj/ansible-checkouts/dotfiles/{{ item.path }} dest=/home/stj/{{ item.dest }} state=link
       with_items:
         - { path: 'zsh/zshrc', dest: '.zshrc' }
         - { path: 'emacs.d', dest: '.emacs.d' }
@@ -21,4 +21,4 @@
         - { path: 'screen-tmux/tmux.conf', dest: '.tmux.conf' }
         - { path: 'vim/vimrc', dest: '.vimrc' }
         - { path: 'bash/bashrc', dest: '.bashrc' }
-        - { path: 'bash/bash_profile', dest: '.bash_profile' }
+
