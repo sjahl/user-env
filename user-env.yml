@@ -5,8 +5,11 @@
 
   tasks:
     - name: ensure git is installed
-      apt: pkg=git state=present
+      apt: pkg={{ item }}  state=installed
       sudo: yes
+      with_items:
+        - git
+        - gnutls-bin
 
     - name: create checkout directory
       file: dest={{ local_home }}/ansible-checkouts owner={{ ansible_user_id }} group={{ ansible_user_gid }} state=directory
