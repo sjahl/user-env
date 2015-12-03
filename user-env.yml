@@ -1,7 +1,5 @@
 ---
 - hosts: all
-  vars:
-    local_home: "{{ lookup('env', 'HOME') }}"
 
   tasks:
     - name: ensure git is installed
@@ -12,13 +10,13 @@
         - gnutls-bin
 
     - name: create checkout directory
-      file: dest={{ local_home }}/ansible-checkouts owner={{ ansible_user_id }} group={{ ansible_user_gid }} state=directory
+      file: dest={{ ansible_user_dir }}/ansible-checkouts owner={{ ansible_user_id }} group={{ ansible_user_gid }} state=directory
 
     - name: check out dotfiles
-      git: repo=https://github.com/sjahl/dotfiles.git dest={{ local_home }}/ansible-checkouts/dotfiles version=HEAD
+      git: repo=https://github.com/sjahl/dotfiles.git dest={{ ansible_user_dir }}/ansible-checkouts/dotfiles version=HEAD
 
     - name: create symlinks
-      file: src={{ local_home }}/ansible-checkouts/dotfiles/{{ item.path }} dest={{ local_home }}/{{ item.dest }} state=link
+      file: src={{ ansible_user_dir }}/ansible-checkouts/dotfiles/{{ item.path }} dest={{ ansible_user_dir }}/{{ item.dest }} state=link
       with_items:
         - { path: 'zsh/zshrc', dest: '.zshrc' }
         - { path: 'emacs.d', dest: '.emacs.d' }
