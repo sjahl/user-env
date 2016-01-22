@@ -18,7 +18,6 @@
     - name: create symlinks
       file: src={{ ansible_user_dir }}/ansible-checkouts/dotfiles/{{ item.path }} dest={{ ansible_user_dir }}/{{ item.dest }} state=link
       with_items:
-        - { path: 'zsh/zshrc', dest: '.zshrc' }
         - { path: 'emacs.d', dest: '.emacs.d' }
         - { path: 'screen-tmux/screenrc', dest: '.screenrc' }
         - { path: 'screen-tmux/tmux.conf', dest: '.tmux.conf' }

@@ -1,0 +1,4 @@
+paramiko
+pyYAML
+Jinja2
+ansible
