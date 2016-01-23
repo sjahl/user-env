@@ -8,6 +8,22 @@
       with_items:
         - git
         - gnutls-bin
+        - python-setuptools
+      when: ansible_os_family == 'Debian'
+
+    - name: ensure pip is installed
+      easy_install: name=pip state=present
+      sudo: yes
+      when: ansible_os_family == 'Debian'
+
+    - name: ensure virtualenv stuff is installed
+      pip: name={{ item }} state=present
+      with_items:
+        - virtualenv
+        - virtualenvwrapper
+        - flake8
+      sudo: yes
+      when: ansible_os_family == 'Debian'
 
     - name: create checkout directory
       file: dest={{ ansible_user_dir }}/ansible-checkouts owner={{ ansible_user_id }} group={{ ansible_user_gid }} state=directory
